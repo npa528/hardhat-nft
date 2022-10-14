@@ -4,7 +4,7 @@ const { developmentChains } = require("../../helper-hardhat-config")
 
 !developmentChains.includes(network.name)
     ? describe.skip
-    : describe("Random IPFS NFT Unit Tests", function () {
+    : describe("Random IPFS NFT Unit Tests", () => {
           let randomIpfsNft, deployer, vrfCoordinatorV2Mock
 
           beforeEach(async function () {
@@ -16,7 +16,7 @@ const { developmentChains } = require("../../helper-hardhat-config")
               randomIpfsNft = await ethers.getContract("RandomipfsNft")
           })
 
-          describe("constructor", async function () {
+          describe("constructor", () => {
               it("sets starting values correctly", async function () {
                   const mintfee = "10000000000000000"
                   const tokenCounter = "0"
@@ -35,7 +35,7 @@ const { developmentChains } = require("../../helper-hardhat-config")
               })
           })
 
-          describe("requestNft", async function () {
+          describe("requestNft", () => {
               it("fails if payment isn't sent with the request", async function () {
                   await expect(randomIpfsNft.requestNft()).to.be.revertedWith(
                       "RandomipfsNft_NeedMoreETHSent"
